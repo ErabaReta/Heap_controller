@@ -85,7 +85,8 @@ The exiter(int code) function cleans up all allocated memory tracked by the Heap
 ```c
 #include "heap_controller.h"  
 
-void exiter(int code) {  
+void exiter(int code) {
+    // add your code to be executed before exiting here
     free_all_heap();  
     exit(code);  
 }  
