@@ -14,10 +14,15 @@ This project is especially useful for projects where manual memory management ca
 - **Error handling:** In case of the allocation failed the heap controler exits the program with free leaks.
 - 
 ## How It Works  
-The `mallocate()` function allocates memory and stores a reference in an internal linked list. by that it makes it accessible any time and never lost even if you overwrite its returned refernce. the mallocate function also checks if an error prevent from allocating, them it exits the program by calling `exiter()` function. 
-then you can use `free_ptr()` to free a specific memory block when it’s no longer needed, it frees the pointer and remove the node containing it from the linked list and by that even calling it twice doesn't cause a double free error.
-the calling of `free_all_heap()` release all tracked memory at once, typically at the end of your program , noting that this wont free memory that are not tracked by HEAP CONTROLLER.  
-or you may just use the `exiter()` function to clean up memory and exit with a specified status code since it calls `free_all_heap()` withing it .No worries , no double free are countered when using `free_all_heap()` multiple times and you can just start calling `mallocate()` again to start another linked list.
+The `mallocate()` function allocates memory and stores a reference in an internal linked list.
+by that it makes it accessible any time and never lost even if you overwrite its returned refernce.
+the mallocate function also checks if an error prevent from allocating, then it exits the program by calling `exiter()` function. 
+then you can use `free_ptr()` to free a specific memory block when it’s no longer needed,
+it frees the pointer and remove the node containing it from the linked list and by that even calling it twice doesn't cause a double free error.
+the calling of `free_all_heap()` release all tracked memory at once,
+typically at the end of your program , noting that this wont free memory that are not tracked by HEAP CONTROLLER.  
+or you may just use the `exiter()` function to clean up memory and exit with a specified status code since it calls `free_all_heap()` withing it.
+No worries , no double free are countered when using `free_all_heap()` multiple times and you can just start calling `mallocate()` again to start another linked list.
 you can add some code to the exiter function to be executed before exiting the program (like closing file descriptors, ...), Is'nt that so powerfull!?
 
 
