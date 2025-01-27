@@ -18,8 +18,9 @@ This project is especially useful for projects where manual memory management ca
 3. **Global Cleanup:** Call `free_all_heap()` to release all tracked memory at once, typically at the end of your program.  
 4. **Graceful Exit:** Use `exiter()` to clean up memory and exit with a specified status code, you can also code the exiter function to be executed before exiting (like closing file descriptors, ...).
 5. **Error handling:** In case of the allocation failed the heap controler exits the program with free leaks
+6. **Prevent double free:** no double free are faced , since the `free_ptr()` only pointers that already stored in the heap controller are freed
 
-## Getting Started  
+# Getting Started  
 
 ### Important note for students:
 HEAP CONTROLLER is not another piece of code that an AI generates, and you'll just copy it and use it to your code and go on,
