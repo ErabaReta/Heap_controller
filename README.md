@@ -17,7 +17,7 @@ This project is especially useful for projects where manual memory management ca
 The `mallocate()` function allocates memory and stores a reference in an internal linked list.
 by that it makes it accessible any time and never lost even if you overwrite its returned refernce.
 the mallocate function also checks if an error prevent from allocating, then it exits the program by calling `exiter()` function. 
-then you can use `free_ptr()` to free a specific memory block when it’s no longer needed,
+you can use `free_ptr()` to free a specific memory block when it’s no longer needed,
 it frees the pointer and remove the node containing it from the linked list and by that even calling it twice doesn't cause a double free error.
 the calling of `free_all_heap()` release all tracked memory at once,
 typically at the end of your program , noting that this wont free memory that are not tracked by HEAP CONTROLLER.  
