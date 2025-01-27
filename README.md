@@ -10,17 +10,18 @@ This project is especially useful for projects where manual memory management ca
 - **Selective Deallocation:** Frees specific memory blocks with `free_ptr()`.  
 - **Graceful Exits:** Includes an `exiter()` function to clean up memory and exit the program with a specified status code.  
 - **Minimal Overhead:** Lightweight and efficient, designed for performance-critical applications.  
-- **Failing Protection:** the `malocate()` function exits the program when the allocation failed with all heap freed
-
+- **Failing Protection:** the `malocate()` function exits the program when the allocation failed with all heap freed.
+- **Error handling:** In case of the allocation failed the heap controler exits the program with free leaks.
+- 
 ## How It Works  
-1. **Dynamic Allocation:** The `mallocate()` function allocates memory and stores a reference in an internal linked list.  
-2. **Selective Deallocation:** Use `free_ptr()` to free a specific memory block when it’s no longer needed.  
-3. **Global Cleanup:** Call `free_all_heap()` to release all tracked memory at once, typically at the end of your program.  
-4. **Graceful Exit:** Use `exiter()` to clean up memory and exit with a specified status code, you can also code the exiter function to be executed before exiting (like closing file descriptors, ...).
-5. **Error handling:** In case of the allocation failed the heap controler exits the program with free leaks
-6. **Prevent double free:** no double free are faced , since the `free_ptr()` only pointers that already stored in the heap controller are freed
+The `mallocate()` function allocates memory and stores a reference in an internal linked list. by that it makes it accessible any time and never lost even if you overwrite its returned refernce. the mallocate function also checks if an error prevent from allocating, them it exits the program by calling `exiter()` function. 
+then you can use `free_ptr()` to free a specific memory block when it’s no longer needed, it frees the pointer and remove the node containing it from the linked list and by that even calling it twice doesn't cause a double free error.
+the calling of `free_all_heap()` release all tracked memory at once, typically at the end of your program , noting that this wont free memory that are not tracked by HEAP CONTROLLER.  
+or you may just use the `exiter()` function to clean up memory and exit with a specified status code since it calls `free_all_heap()` withing it .No worries , no double free are countered when using `free_all_heap()` multiple times and you can just start calling `mallocate()` again to start another linked list.
+you can add some code to the exiter function to be executed before exiting the program (like closing file descriptors, ...), Is'nt that so powerfull!?
 
-# Getting Started  
+
+## Getting Started  
 
 ### Important note for students:
 HEAP CONTROLLER is not another piece of code that an AI generates, and you'll just copy it and use it to your code and go on,
@@ -29,7 +30,7 @@ Learning memory managment is a must for every programmer.
 Dont be lazy!! by god, pls use your Brain.
 
 ### Prerequisites  
-- A C compiler (e.g., GCC or Clang).  
+- A C compiler (e.g., GCC or Clang), obviesly.  
 - Very basic understanding of C memory management.  
 
 ### Installation  
@@ -47,12 +48,12 @@ Dont be lazy!! by god, pls use your Brain.
 	replacing `malloc()` function with `mallocate()`,
 	replacing `free()` function with `free_ptr()`,
 	replacing `exit()` function with `exiter()` or call `free_all_heap()` before exiting,
-	that's it nothing else needed.
+	that's it nothing else needed, how easy is that.
 
 4. Compile your program with heap_controller.c:
-
+```bash
 gcc -o program your_program.c heap_controller.c  
-
+```
 
 ###  Usage
 
