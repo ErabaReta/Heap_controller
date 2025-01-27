@@ -1,8 +1,8 @@
 # Heap Controller  
 
-Heap Controller is a simple yet effective memory management tool for C programs. It tracks dynamically allocated memory, provides easy-to-use functions for allocation and deallocation, and ensures memory is properly cleaned up to avoid memory leaks.  
+Heap Controller is a simple design I made to manage memory in C programs. It tracks dynamically allocated memory, provides easy-to-use functions for allocation and deallocation, and ensures memory is properly cleaned up to avoid memory leaks.  
 
-This project is especially useful for projects where manual memory management can become cumbersome or error-prone.  
+This project is especially useful for projects where manual memory management can become such a headache.  
 
 ## Features  
 - **Memory Tracking:** Keeps a linked list of all allocated memory blocks for centralized control.  
