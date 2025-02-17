@@ -57,7 +57,7 @@ Dont be lazy!! by god, pls use your Brain.
 
 4. Compile your program with heap_controller.c:
 ```bash
-gcc -o program your_program.c heap_controller.c  
+gcc -o program your_program.c heap_controller.c heap_controller_utils.c
 ```
 
 ###  Usage
